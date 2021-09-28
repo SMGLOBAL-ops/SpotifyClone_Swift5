@@ -53,10 +53,30 @@ final class AuthManager {
             return
         }
         
+        var components = URLComponents()
+        components.queryItems = [
+            URLQueryItem(name: "grant_type", value: "authorization_code"),
+            URLQueryItem(name: "code", value: "code"),
+            URLQueryItem(name: "redirect_uri", value: "https://www.iosacademy.io"),
+        ]
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = components.query?.data(using: .utf8)
         
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        let basicToken = Constants.clientID+":"+Constants.clientSecret
+        let data = basicToken.data(using: .utf8)
+        guard let base64String = data?.base64EncodedString() else {
+            completion(false)
+            print("Failure to get base64")
+            return
+        }
+        
+        request.setValue("Basic \(base64String) ", forHTTPHeaderField: "Authorization")
+        
+        
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
             guard let data = data, error == nil else {
                 completion(false)
                 return
@@ -65,10 +85,13 @@ final class AuthManager {
             // convert to JSON
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self?.cacheToken(result: result)
                 
                 
-                print("SUCCESS: \(json)")
+                print("SUCCESS: \(result)")
+                completion(true)
             }
             
             catch {
@@ -82,8 +105,11 @@ final class AuthManager {
         task.resume()
     }
     
-    private func cacheToken() {
-        
+    private func cacheToken(result: AuthResponse) {
+        UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
+        UserDefaults.standard.setValue(result.refresh_token, forKey: "refresh_token")
+        UserDefaults.standard.setValue(Date().addingTimeInterval(
+                                       TimeInterval(result.expires_in)), forKey: "expirationDate")
     }
     
 }

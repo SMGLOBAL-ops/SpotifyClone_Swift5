@@ -29,6 +29,7 @@
 		E480A8DC26FE3466008E9330 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E480A8DB26FE3466008E9330 /* Artist.swift */; };
 		E480A8DE26FE346F008E9330 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E480A8DD26FE346F008E9330 /* UserProfile.swift */; };
 		E480A8E02701DB49008E9330 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E480A8DF2701DB49008E9330 /* Extensions.swift */; };
+		E480A8E227032940008E9330 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E480A8E127032940008E9330 /* AuthResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		E480A8DB26FE3466008E9330 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		E480A8DD26FE346F008E9330 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		E480A8DF2701DB49008E9330 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E480A8E127032940008E9330 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				E480A8D926FE3441008E9330 /* AudioTrack.swift */,
 				E480A8DB26FE3466008E9330 /* Artist.swift */,
 				E480A8DD26FE346F008E9330 /* UserProfile.swift */,
+				E480A8E127032940008E9330 /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				E480A8D026FE3322008E9330 /* SearchResultsViewController.swift in Sources */,
 				E480A8C726FDF842008E9330 /* WelcomeViewController.swift in Sources */,
 				E480A8D626FE33C8008E9330 /* HapticsManager.swift in Sources */,
+				E480A8E227032940008E9330 /* AuthResponse.swift in Sources */,
 				E480A8D426FE33A6008E9330 /* APICaller.swift in Sources */,
 				E480A8D226FE3383008E9330 /* AuthManager.swift in Sources */,
 				E480A8CB26FDF92A008E9330 /* ProfileViewController.swift in Sources */,
